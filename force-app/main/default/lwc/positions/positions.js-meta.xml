@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets = "lightning__HomePage, lightning__RecordPage, lightning__AppPage">
+            <property name="limitNumber" type="Integer" default="2000" label="Number of records for component"/>
+            <property name="pageSize" type="Integer" default="5" label="Number of records per page"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

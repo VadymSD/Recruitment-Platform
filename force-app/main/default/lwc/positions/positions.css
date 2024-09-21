@@ -1,0 +1,10 @@
+.custom-header {
+    background-color: var(--slds-c-card-header-color-background, rgba(23,51,91,255));
+    color: var(--slds-c-card-header-text-color, rgb(255, 255, 255));
+}
+
+.custom-title {
+    font-size: var(--slds-c-card-header-text-font-size, 30px);
+    font-weight: var(--slds-c-card-header-text-font-weight, 250);
+}
+

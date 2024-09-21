@@ -1,0 +1,60 @@
+<template>
+    <article class="slds-card slds-p-around_small">
+        <div class="slds-card__header slds-grid slds-p-around_medium slds-m-bottom_none custom-header">
+            <h2 class="slds-card__header-title custom-title">
+                <span>Positions</span>
+            </h2>
+        </div>
+        <div class="slds-card__body">
+            <div class="slds-size_1-of-5">
+                <lightning-combobox
+                    label="Status"
+                    value={selectedStatus}
+                    options={statusOptions}   
+                    onchange={handleStatusChange}>
+                </lightning-combobox>
+            </div>
+            <div class="slds-p-bottom_small">
+                <lightning-button
+                    label="Save" 
+                    variant="brand"
+                    onclick={handleSave}>
+                </lightning-button>
+            </div>
+            <template if:true={positions}>
+                <c-custom-datatable
+                    class="slds-table slds-table_striped"
+                    data={visiblePositions}
+                    columns={columns}
+                    onselect={handleSelect}
+                    key-field="Id"
+                    hide-checkbox-column
+                    resize-column-disabled>
+                </c-custom-datatable>
+            </template>
+        </div>
+        <div class="slds-card__footer slds-p-horizontal_none slds-p-vertical_medium">  
+            <c-pagination
+                records={positions}
+                onupdate={updatePositionHandler}
+                page-size={pageSize}>
+            </c-pagination>
+        </div>  
+        <template if:true={hasError}>
+            <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header">
+                        <h2 id="header43" class="slds-text-heading--medium">Oops... something went wrong</h2>
+                    </div>
+                    <div class="slds-modal__content slds-p-around--medium">
+                        <p>{errorMessage}</p>
+                    </div>
+                    <div class="slds-modal__footer">
+                        <lightning-button label="Okay" onclick={dismissError}></lightning-button>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </article>
+</template>

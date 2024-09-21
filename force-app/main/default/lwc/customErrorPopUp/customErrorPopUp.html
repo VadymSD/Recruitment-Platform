@@ -1,0 +1,16 @@
+<template>
+    <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <div class="slds-modal__header">
+                <h2 id="header43" class="slds-text-heading--medium">{errorLabel}</h2>
+            </div>
+            <div class="slds-modal__content slds-p-around--medium">
+                <p>{errorMessage}</p>
+            </div>
+            <div class="slds-modal__footer">
+                <lightning-button label="Okay" onclick={dismissError}></lightning-button>
+            </div>
+        </div>
+    </div>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>

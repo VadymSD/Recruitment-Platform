@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets = "lightning__RecordPage">
+            <property name="limitNumber" type="Integer" default="100" label="Number of candidates"/>
+            <property name="pageSize" type="Integer" default="5" label="Number of candidates per page"/>
+            <property name="showImage" type="Boolean" default="true" label="Show Image ?"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -1,0 +1,59 @@
+<template>
+    <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <div class="slds-modal__header">
+                <h2 id="header43" class="slds-text-heading--medium">Candidate Information</h2>
+            </div>
+            <div class="slds-modal__content slds-p-around--medium">
+                <article class="slds-card slds-card_boundary">
+                    <div class="slds-card__header slds-grid slds-box slds-theme_shade">
+                        <header class="slds-media slds-media_center slds-truncate">
+                            <div class="slds-media__figure">
+                                <template if:true={showImage}>
+                                    <span class="slds-avatar slds-avatar_circle slds-avatar_large">
+                                        <img alt="#" src={candidate.Avatar__c} title="Candidate Avatar"/>
+                                    </span>
+                                </template> 
+                            </div>
+                            <div class="slds-media__body">
+                                <h2 class="slds-card__header-title">
+                                    <a data-id={candidate.Id} onclick={navigateToRecord} class="slds-card__header-link" title="Candidate Name">
+                                        <span class="slds-text-heading_medium">{candidate.Name}</span>
+                                    </a>
+                                </h2>
+                            </div>
+                        </header>
+                    </div>
+                    <div class="slds-card__body">
+                        <div class="slds-var-p-horizontal_small">
+                            <div class="slds-var-p-bottom_small">
+                                <template for:each={candidatesForModal} for:item="field">
+                                    <div class="field-item slds-border_bottom slds-p-around_xx-small" key={field}>
+                                        <dl class="slds-list_horizontal slds-wrap">
+                                            <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Phone">{field.label}:</dt>
+                                            <dd class="slds-item_detail slds-truncate">{field.value}</dd>
+                                        </dl>
+                                    </div>
+                                </template>
+                            </div>
+                            <div class="slds-p-around_small slds-box slds-theme_shade">
+                                <h2 class="slds-card__header-title slds-p-bottom_small">Job Application</h2>
+                                <template for:each={jobApplications} for:item="field">
+                                    <div class="field-item slds-border_bottom slds-p-around_xx-small" key={field}>
+                                        <dl class="slds-list_horizontal slds-wrap">
+                                            <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Phone">{field.label}:</dt>
+                                            <dd class="slds-item_detail slds-truncate">{field.value}</dd>
+                                        </dl>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="slds-modal__footer">
+                <lightning-button label="Close" onclick={closeModal}></lightning-button>
+            </div>
+        </div>
+    </div>
+</template>

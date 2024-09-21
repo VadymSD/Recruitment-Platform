@@ -1,0 +1,21 @@
+<template>
+    <article class="slds-card slds-p-horizontal_medium slds-p-bottom_medium">
+        <div class="slds-card__header slds-grid slds-p-around_medium slds-m-bottom_none custom-header">
+            <h2 class="slds-card__header-title">
+                <span>Candidates</span>
+            </h2>
+        </div>
+        <div class="slds-grid slds-wrap slds-gutters" if:true={visibleCandidates}>
+            <template for:each={visibleCandidates} for:item="candidate">
+                <c-candidate-custom-tile class="slds-col slds-large-size_4-of-12 slds-var-p-around_x-small" key={candidate.Id} candidate={candidate} onhandleerror={handleErrorFromChild} show-image={showImage}></c-candidate-custom-tile>
+            </template>
+        </div> 
+    </article>
+    <div class="slds-card__footer slds-p-horizontal_none slds-p-vertical_medium">  
+        <c-pagination records={candidates} onupdate={updateCandidateHandler} page-size={pageSize}></c-pagination>
+    </div>
+    <template if:true={hasError}>
+        <c-custom-error-pop-up error-message={errorMessage} ondismiss={dismissError}></c-custom-error-pop-up>
+    </template>
+</template>
+

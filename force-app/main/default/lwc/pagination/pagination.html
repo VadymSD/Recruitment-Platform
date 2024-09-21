@@ -1,0 +1,36 @@
+<template>
+    <div class="slds-grid slds-grid_vertical-align-center slds-grid_align-spread slds-p-top_xx-small">
+        <lightning-layout>
+            <lightning-layout-item class="slds-p-right_small">
+                <lightning-button
+                    variant="neutral"
+                    label="Prev"
+                    icon-name="utility:chevronleft"
+                    onclick={handlePrev}
+                    disabled={isPrevDisabled}>
+                </lightning-button>
+            </lightning-layout-item>
+            <template if:true={pageLinks}>
+                <template for:each={pageLinks} for:item="page">
+                    <lightning-button
+                        key={page}
+                        label={page}
+                        value={page}
+                        onclick={handlePageButtonClick}
+                        class="slds-p-right_small">
+                    </lightning-button>
+                </template>
+            </template>
+            <lightning-layout-item>
+                <lightning-button
+                    variant="neutral"
+                    label="Next"
+                    icon-name="utility:chevronright" 
+                    icon-position="right"
+                    onclick={handleNext}
+                    disabled={isNextDisabled}>
+                </lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+</template>

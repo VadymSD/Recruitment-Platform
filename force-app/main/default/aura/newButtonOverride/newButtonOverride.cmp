@@ -1,0 +1,11 @@
+<aura:component implements="lightning:actionOverride" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.handleInit}"/>
+    <aura:attribute name="candidate" type="Candidate__c" default="{'sobjectType': 'Candidate__c', 'Name':'', 'Description__c':''}" /> 
+    <div class="slds-m-around--xx-large">
+        <div class="slds-form--stacked">
+            <div class="slds-form-element">  
+                <c:candidateButtonOverride aura:id="candidateButtonOverride" onnavigate="{!c.navigateToRecord}"></c:candidateButtonOverride>
+            </div>
+        </div>
+    </div>    
+</aura:component>

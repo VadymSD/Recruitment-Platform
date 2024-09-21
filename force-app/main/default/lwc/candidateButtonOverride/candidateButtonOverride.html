@@ -1,0 +1,62 @@
+<template>
+    <section role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <div class="slds-modal__header slds-grid slds-theme_shade">
+                <div class="slds-col slds-size_1-of-12"></div> 
+                <h2 id="header43" class="slds-text-heading--medium slds-col slds-size_10-of-12">New Candidate</h2>
+                <button class="slds-button close-button slds-col slds-button_icon slds-size_1-of-12" title="Close" onclick={handleClose} onmouseover={handleIconHover} onmouseout={handleIconUnhover}>
+                    <lightning-icon class="slds-float_right" icon-name="utility:close" size="medium" alternative-text="Indicates close"></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>  
+            </div>          
+            <div class="slds-modal__content slds-p-around--medium">
+                <lightning-record-edit-form data-id="candidateForm" record-id={recordId} object-api-name={candidate} onsuccess={handleCandidateSuccess} onerror={handleCandidateError}>
+                    <article class="slds-card slds-card_boundary">
+                        <div class="slds-card__body">
+                            <div class="slds-p-around_small">
+                                <h3 class="slds-card__header-title slds-p-bottom_small">Candidate</h3>
+                                <div class="slds-grid slds-wrap">
+                                    <template if:true={candidateFields}>
+                                        <template for:each={candidateFields} for:item="field">
+                                            <div class="field-item slds-col slds-size_1-of-3 slds-border_bottom slds-p-around_xx-small" key={field.Id}>
+                                                <lightning-input-field field-name={field.name}></lightning-input-field>
+                                            </div>
+                                        </template>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </lightning-record-edit-form>
+                <lightning-record-edit-form data-id="jobAppForm" object-api-name={jobApp} onsuccess={handleJobAppSuccess} onerror={handleJobAppError} onsubmit={handleSubmit}>
+                    <article class="slds-card slds-card_boundary">
+                        <div class="slds-card__body">
+                            <div class="slds-var-p-horizontal_small">
+                                <h3 class="slds-card__header-title slds-p-bottom_small">Job Application</h3>
+                                <div class="slds-grid slds-wrap">
+                                    <div class="field-item slds-col slds-size_1-of-3 slds-border_bottom slds-p-around_xx-small">
+                                        <lightning-input-field value={recordId} field-name={candidate}></lightning-input-field>
+                                    </div>
+                                    <template if:true={jobApplicationFields}>
+                                        <template for:each={jobApplicationFields} for:item="field" for:index="index">
+                                            <div class="field-item slds-col slds-size_1-of-3 slds-border_bottom slds-p-around_xx-small" key={field.Id}>
+                                                <lightning-input-field data-index={index} onchange={handleChange} field-name={field.name}></lightning-input-field>
+                                            </div>
+                                        </template>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </lightning-record-edit-form>
+                <div class="slds-modal__footer slds-grid">
+                    <lightning-button class="slds-col slds-size_10-of-12 slds-p-right_xx-small" type="submit" variant="brand" label="Save" onclick={handleCandidateSave}></lightning-button>
+                    <lightning-button class="slds-size_1-of-12" label="Cancel" onclick={handleReset}></lightning-button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <template if:true={hasError}>
+        <c-custom-error-pop-up error-message={errorMessage} ondismiss={dismissError}></c-custom-error-pop-up>
+    </template>
+</template>

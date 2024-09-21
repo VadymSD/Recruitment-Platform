@@ -1,0 +1,28 @@
+<apex:page controller="PositionController">
+    <apex:form >
+        <apex:pageBlock title="Position Records">
+            <apex:pageBlockSection >
+                <apex:outputLabel value="Filter by Status:"/> <br/>
+                <apex:selectList value="{! selectedStatus }" size="1">
+                    <apex:selectOption itemValue="" itemLabel="All"/>
+                    <apex:selectOptions value="{! statusOptions }"/>
+                    <apex:actionSupport event="onchange" action="{! filterPositions }" rerender="positionTable, message"/>
+                </apex:selectList>
+            </apex:pageBlockSection>
+            <apex:pageBlockTable value="{! positions }" var="pos" id="positionTable">
+                <apex:column value="{! pos.Name }"/>
+                <apex:column headerValue="Status">
+                    <apex:inputField value="{! pos.Status__c}"/>
+                </apex:column>
+                <apex:column value="{! pos.Open_Date__c }"/>
+                <apex:column value="{! pos.Close_Date__c }"/>
+                <apex:column value="{! pos.Min_Salary__c }"/>
+                <apex:column value="{! pos.Max_Salary__c }"/>
+            </apex:pageBlockTable>
+            <apex:pageBlockSection >
+                <apex:commandButton action="{! savePositions }" value="Save" rerender="positionTable, message"/>
+            </apex:pageBlockSection>
+            <apex:pageMessages id="message"/>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

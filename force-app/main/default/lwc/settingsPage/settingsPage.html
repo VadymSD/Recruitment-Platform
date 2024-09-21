@@ -1,0 +1,77 @@
+<template>
+    <lightning-card title="Field Set Settings" icon-name="custom:custom14">
+        <div class="slds-grid slds-wrap slds-gutters slds-p-around_medium ">
+            <div class="slds-p-horizontal_medium slds-col slds-size_1-of-2">
+                <label>Select record</label>
+                <lightning-combobox
+                    label="Records"
+                    value={selectedProfileSetting}
+                    options={records}
+                    onchange={handleProfilePick}>
+                </lightning-combobox>
+            </div>
+        </div>
+        <template if:true={selectedProfileSetting}>
+            <div class="slds-grid slds-wrap slds-gutters slds-p-around_medium ">
+                <div class="slds-p-horizontal_medium slds-col slds-size_1-of-2">
+                    <label>Select object</label>
+                    <lightning-combobox
+                        label="Objects"
+                        value={selectedObjectType}
+                        options={objectTypes}
+                        onchange={handleObjectPick}>
+                    </lightning-combobox>
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap slds-gutters slds-p-around_medium ">
+                <div class="field-column slds-col slds-size_1-of-2 slds-p-around_x-small slds-m-left_small">
+                    <h2>Display Inaccessible Records</h2>
+                        <lightning-input 
+                            type="checkbox"
+                            label="Make them visible"
+                            checked={checkboxValue}
+                            onchange={handleCheckBoxChange}>
+                        </lightning-input>
+                    </div>
+                </div>
+        </template>
+        <template if:true={selectedObjectType}>
+            <div class="slds-grid slds-wrap slds-gutters slds-p-around_medium ">
+                <div class="slds-p-horizontal_medium slds-col slds-size_1-of-2">
+                    <label>Recruiter Settings</label>
+                    <lightning-combobox
+                        label="Recruiter Field Sets"
+                        value={selectedFieldSet}
+                        options={fieldSets}
+                        onchange={handleFieldSetPick}>
+                    </lightning-combobox>
+                </div>
+            </div>
+        </template>
+        <template if:true={selectedFieldSet}>
+            <div class="slds-grid slds-wrap slds-gutters slds-p-around_medium ">
+                <div class="field-column slds-col slds-size_1-of-2 slds-p-around_x-small slds-m-left_small">
+                    <label>Visible Fields</label>
+                    <template for:each={fields} for:item="field">
+                        <div class="field-item slds-border_bottom slds-p-around_xx-small" key={field}>
+                            {field}
+                        </div>
+                    </template>
+                    <div class="slds-p-top_small">
+                        <template if:true={forbiddenFields}>
+                            <label>Restricted Fields</label>
+                            <template for:each={forbiddenFields} for:item="field">
+                                <div class="field-item forbidden-field slds-border_bottom slds-p-around_xx-small" key={field}>
+                                    {field}
+                                </div>
+                            </template>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template if:true={hasError}>
+            <c-custom-error-pop-up error-message={errorMessage} ondismiss={dismissError}></c-custom-error-pop-up>
+        </template>
+    </lightning-card>
+</template>

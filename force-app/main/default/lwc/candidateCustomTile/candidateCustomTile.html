@@ -1,0 +1,31 @@
+<template>
+    <article class="slds-tile slds-p-around_x-small custom-tile" onclick={handleRecordClick} onmouseover={handleRecordHover} onmouseout={handleRecordUnhover}>
+        <div class="slds-media__figure">
+            <template if:true={showImage}>
+                <span class="slds-avatar slds-avatar_circle slds-avatar_large">
+                    <img alt="#" src={candidate.Avatar__c} title="Candidate Avatar"/>
+                </span>
+            </template> 
+        </div>
+        <div class="slds-media__body">
+            <h3 class="slds-tile__title slds-truncate">
+                <a data-id={candidate.Id} onclick={handleParentNavigate} class="slds-card__header-link" title="Candidate Name">
+                    <span class="slds-text-heading_small">{candidate.Name}</span>
+                </a>
+            </h3>
+            <div class="slds-tile__detail">
+                <template for:each={candidatesForTile} for:item="field">
+                    <div class="field-item slds-border_bottom slds-p-around_xx-small" key={field}>
+                        <dl class="slds-list_horizontal slds-wrap">
+                            <dt class="slds-item_label slds-text-color_weak slds-truncate">{field.label}</dt>
+                            <dd class="slds-item_detail slds-truncate">{field.value}</dd>
+                        </dl>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </article>
+    <template if:true={tileIsClicked}>
+        <c-modal-record-window candidate={candidate} candidates-for-modal={candidatesForModal} job-applications={jobApplications} show-image={showImage} onclose={closeModal} onnavigate={handleChildNavigate}></c-modal-record-window>
+    </template>
+</template>

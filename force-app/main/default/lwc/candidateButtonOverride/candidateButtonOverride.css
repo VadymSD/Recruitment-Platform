@@ -1,0 +1,4 @@
+.hoveredIcon {
+    opacity: 0.5;
+    transition: var(--slds-c-tile-transition, opacity 0.3s);
+}

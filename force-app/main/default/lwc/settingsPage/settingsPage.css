@@ -1,0 +1,14 @@
+.field-column {
+    border-style: solid;
+    border-width: var(--slds-c-tile-sizing-border, 1px);
+    border-color: var(--slds-c-tile-color-border, #c2c2c2);
+}
+
+.field-item {
+    border-width: var(--slds-c-tile-sizing-border, 2px);
+    border-color: var(--slds-c-tile-color-border, #c2c2c2);
+}
+
+.forbidden-field {
+    background-color: var(--slds-c-tile-color-background, #c2c2c2);
+}

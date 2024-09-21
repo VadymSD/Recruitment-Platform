@@ -1,0 +1,6 @@
+.currentPage{
+    --slds-c-button-neutral-color-background : #b7b7b7;
+    --slds-c-button-neutral-color-background-active : #b7b7b7;
+    --slds-c-button-text-color: #fff;;
+    --slds-c-button-neutral-color-border-hover : none;
+}
